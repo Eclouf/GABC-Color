@@ -1,6 +1,8 @@
 # GABC Color
 
-"Highlighting the syntax for GABC files."
+Highlighting the syntax for GABC files.
+
+![Image](https://github.com/Eclouf/GABC-Color/blob/0fde8a35a9bf8158a86e3f8749aaa36e483106e5/exemple.jpg)
 
 ## Features
 
