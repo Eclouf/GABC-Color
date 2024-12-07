@@ -1,0 +1,75 @@
+{
+	"name": "source.gabc",
+	"patterns": [
+		{"name":"constant.language",
+		"match":"(name:|gabc-copyright:|score-copyright:|office-part:|occasion:|meter:|commentary:|arranger:|author:|date:|manuscript:|manuscript-reference:|manuscript-storage-place:|book:|language:|transcriber:|transcription-date:|mode:|user-notes:|annotation:|;)",
+		"captures":{"0":{"name":"orange.gabc"}}
+		},
+		{"contentName": "meta.score",
+      	"begin": "%%",
+		"beginCaptures":{"0":{"name":"green.gabc"}},
+      	"end": "%%",
+		"captures":{"0":{"name":"green.gabc"}},
+      	"patterns": [
+
+			{"name":"keyword",
+				"match":"(\\(,\\)|\\(;\\)|\\(:\\)|\\(::\\))",
+				"captures":{"0":{"name":"green.gabc"}}
+			},
+
+			{"name":"string.numbers",
+				"match":"-?\\d+(\\.\\d+)?",
+				"captures":{"0":{"name":"green.gabc"}}
+			},
+
+			{"name":"string.chevrons",
+			"match":"<[^>]+>",
+			"captures":{"0":{"name":"yellow.gabc"}}
+			},
+
+			{"name":"string.unquoted",
+			"begin":"\\(",
+			"beginCaptures":{"0":{"name":"cyan.gabc"}},
+			"end":"\\)",
+			"endCaptures":{"0":{"name":"cyan.gabc"}},
+			"patterns":[
+				{"name":"number",
+				"match":"-?\\d+(\\.\\d+)?",
+				"captures":{"0":{"name":"green.gabc"}}
+				},
+				{"name":"string.spe",
+				"match":"['\\[\\]\\@\\#\\*\\!\\.:,†]",
+				"captures":{"0":{"name":"red.gabc"}}
+				},
+				{"name":"word",
+				"match":"[a-zA-Z_]+",
+				"captures":{"0":{"name":"cyan.gabc"}}
+				}
+				]
+			},
+
+			{"name":"string.word",
+				"match":"[a-zA-ZÀ-ÿ_]",
+				"captures":{"0":{"name":"magenta.gabc"}}
+			},
+
+			{"name":"string.spe",
+			"match":"['\\[\\]\\@\\#\\*\\!\\.:,†]",
+			"captures":{"0":{"name":"red.gabc"}}
+			}
+        	]
+		}
+		
+
+
+	],
+	
+    "repository": {},
+    "scopeName": "source.gabc",
+
+    "_metadata": {
+        "_author":"eclouf",
+        "_description":"",
+        "_version":"0.0.1"
+    }
+}

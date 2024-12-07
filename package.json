@@ -1,0 +1,47 @@
+{"name": "gabc-color",
+  "displayName": "GABC Color",
+  "description": "Highlighting the syntax for GABC files.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eclouf/GABC-Color"
+  },
+  "author": "Eclouf <eclouf@gmail.com>",
+  "license": "MIT",
+  "contributes": {
+    "languages": [
+      {
+        "id": "gabc",
+        "aliases": [
+          "gabc"
+        ],
+        "extensions": [
+          ".gabc",
+          ".GABC"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gabc",
+        "scopeName": "source.gabc",
+        "path": "./syntaxes/gabc.tmLanguage.json"
+      }
+    ],
+    "themes": [
+      {
+        "label": "GABC Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/gabc-color-theme.json"
+      }
+    ]
+  }
+}
+
