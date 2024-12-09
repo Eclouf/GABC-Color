@@ -25,6 +25,8 @@ Initial release of gabc-color
 
 ### 0.0.2
 
-`Removed`   Themes
-`Fixed`     Conflicts with existing themes
-`Changed`   Extension structure
+- `Removed`   Themes
+
+- `Fixed`     Conflicts with existing themes
+
+- `Changed`   Extension structure
