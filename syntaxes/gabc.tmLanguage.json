@@ -1,61 +1,52 @@
 {
 	"name": "source.gabc",
 	"patterns": [
-		{"name":"constant.language",
+
+		{"name":"variable.parameter.gabc",
 		"match":"(name:|gabc-copyright:|score-copyright:|office-part:|occasion:|meter:|commentary:|arranger:|author:|date:|manuscript:|manuscript-reference:|manuscript-storage-place:|book:|language:|transcriber:|transcription-date:|mode:|user-notes:|annotation:|;)",
 		"captures":{"0":{"name":"orange.gabc"}}
 		},
-		{"contentName": "meta.score",
+
+		{"name": "comment.block.gabc",
       	"begin": "%%",
-		"beginCaptures":{"0":{"name":"green.gabc"}},
       	"end": "%%",
-		"captures":{"0":{"name":"green.gabc"}},
       	"patterns": [
 
-			{"name":"keyword",
-				"match":"(\\(,\\)|\\(;\\)|\\(:\\)|\\(::\\))",
-				"captures":{"0":{"name":"green.gabc"}}
+			{"name":"constant.character.escape.gabc",
+				"match":"(\\(,\\)|\\(;\\)|\\(:\\)|\\(::\\))|\\(c1\\)|\\(c2\\)|\\(c3\\)|\\(c4\\)|\\(f3\\)|\\(f4\\)|\\(cb3\\)|\\(c2@c4\\)"
+				
 			},
 
-			{"name":"string.numbers",
-				"match":"-?\\d+(\\.\\d+)?",
-				"captures":{"0":{"name":"green.gabc"}}
+			{"name":"constant.numeric.gabc",
+				"match":"-?\\d+\\.?"
+				
 			},
 
-			{"name":"string.chevrons",
-			"match":"<[^>]+>",
-			"captures":{"0":{"name":"yellow.gabc"}}
+			{"name":"keyword.control.gabc",
+			"match":"<[^>]+>"
+			
 			},
 
-			{"name":"string.unquoted",
+			{"name":"keyword.gabc",
 			"begin":"\\(",
-			"beginCaptures":{"0":{"name":"cyan.gabc"}},
 			"end":"\\)",
-			"endCaptures":{"0":{"name":"cyan.gabc"}},
 			"patterns":[
-				{"name":"number",
-				"match":"-?\\d+(\\.\\d+)?",
-				"captures":{"0":{"name":"green.gabc"}}
+				{"name":"constant.numeric.gabc",
+				"match":"-?\\d+(\\.\\d+)?"
 				},
-				{"name":"string.spe",
-				"match":"['\\[\\]\\@\\#\\*\\!\\.:,†]",
-				"captures":{"0":{"name":"red.gabc"}}
-				},
-				{"name":"word",
-				"match":"[a-zA-Z_]+",
-				"captures":{"0":{"name":"cyan.gabc"}}
+
+				{"name":"keyword.gabc",
+				"match":"[a-zA-Z_]+"
 				}
 				]
 			},
 
-			{"name":"string.word",
-				"match":"[a-zA-ZÀ-ÿ_]",
-				"captures":{"0":{"name":"magenta.gabc"}}
+			{"name":"string.unquoted.gabc",
+				"match":"[a-zA-ZÀ-ÿ_]|,|;|:|."
 			},
 
-			{"name":"string.spe",
-			"match":"['\\[\\]\\@\\#\\*\\!\\.:,†]",
-			"captures":{"0":{"name":"red.gabc"}}
+			{"name":"invalid.illegal.gabc",
+			"match":"['\\[\\]\\@\\#\\*\\!\\†]"
 			}
         	]
 		}

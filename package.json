@@ -1,7 +1,7 @@
 {"name": "gabc-color",
   "displayName": "GABC Color",
-  "description": "Highlighting the syntax for GABC files.",
-  "version": "0.0.1",
+  "description": "GABC's Highlighting.",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -33,13 +33,6 @@
         "language": "gabc",
         "scopeName": "source.gabc",
         "path": "./syntaxes/gabc.tmLanguage.json"
-      }
-    ],
-    "themes": [
-      {
-        "label": "GABC Theme",
-        "uiTheme": "vs-dark",
-        "path": "./themes/gabc-color-theme.json"
       }
     ]
   }
