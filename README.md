@@ -18,11 +18,11 @@ VSCode >= 1.95.0
 
 ## Release Notes
 
-### 0.0.3
+### 0.1.3
 
 - `Add` Added suggestions
 
-### 0.0.2
+### 0.1.0
 
 - `Removed`   Themes
 
