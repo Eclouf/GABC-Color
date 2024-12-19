@@ -1,10 +1,11 @@
 {"name": "gabc-color",
   "displayName": "GABC Color",
   "description": "GABC's Highlighting.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.95.0"
   },
+  "main": "./extension.js",
   "categories": [
     "Programming Languages"
   ],
@@ -34,6 +35,9 @@
         "scopeName": "source.gabc",
         "path": "./syntaxes/gabc.tmLanguage.json"
       }
+    ],
+    "activationEvents": [
+      "onLanguage:gabc"
     ]
   }
 }

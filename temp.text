@@ -1,0 +1,45 @@
+"editor.tokenColorCustomizations": {
+      "textMateRules": [
+      {
+        "scope": ["variable.parameter.gabc"],
+        "settings": {
+          "foreground": "#9BD1F2"
+        }
+      },
+      {
+        "scope": ["support.class.gabc"],
+        "settings": {
+          "foreground": "#ff9100"
+        }
+      },
+      {
+        "scope": ["constant.gabc"],
+        "settings": {
+          "foreground": "#55ca08"
+        }
+      },
+      {
+        "scope": ["constant.numeric.gabc"],
+        "settings": {
+          "foreground": "#e9d208"
+        }
+      },
+      {
+        "scope": ["keyword.control.gabc"],
+        "settings": {
+          "foreground": "#ff6161"
+        }
+      },
+      {
+        "scope": ["keyword.gabc"],
+        "settings": {
+          "foreground": "#A29AD9"
+        }
+      },
+      {
+        "scope": ["invalid.illegal.gabc"],
+        "settings": {
+          "foreground": "#146bee"
+        }
+      }
+    ]}

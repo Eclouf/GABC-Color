@@ -18,10 +18,9 @@ VSCode >= 1.95.0
 
 ## Release Notes
 
+### 0.0.3
 
-### 0.0.1
-
-Initial release of gabc-color
+- `Add` Added suggestions
 
 ### 0.0.2
 
@@ -30,3 +29,9 @@ Initial release of gabc-color
 - `Fixed`     Conflicts with existing themes
 
 - `Changed`   Extension structure
+
+### 0.0.1
+
+Initial release of gabc-color
+
+
