@@ -1,7 +1,8 @@
 {"name": "gabc-color",
+  "publisher": "eclouf_tools",
   "displayName": "GABC Color",
   "description": "GABC's Highlighting.",
-  "version": "0.0.3",
+  "version": "0.1.3",
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -37,7 +38,8 @@
       }
     ],
     "activationEvents": [
-      "onLanguage:gabc"
+      "onLanguage:gabc",
+      "onStartupFinished"
     ]
   }
 }
