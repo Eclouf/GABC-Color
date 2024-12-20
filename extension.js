@@ -56,13 +56,13 @@ function activate(context) {
                 
                 const gregkey = [
                     {label:"(c1)", documentation:'C key first line'},
-                    "(c2)",
-                    "(c3)",
-                    "(c4)",
-                    "(f3)",
-                    "(f4)",
-                    "(cb3)",
-                    "(c2@c4)"
+                    {label:"(c2)", documentation:'C key second line'},
+                    {label:"(c3)", documentation:'C key third line'},
+                    {label:"(c4)", documentation:'C key fourth line'},
+                    {label:"(f3)", documentation:'F key third line'},
+                    {label:"(f4)", documentation:'F key fourth line'},
+                    {label:"(cb3)", documentation:'C key third line with bemol'},
+                    {label:"(c2@c4)", documentation:'C-keys second and fourth row'}
                 ];
 
                 // Récupérer la ligne actuelle et le texte avant la position du curseur
