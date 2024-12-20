@@ -6,7 +6,7 @@ Highlighting the syntax for GABC files.
 
 ## Features
 
-...
+![Image](https://github.com/Eclouf/GABC-Color/blob/558db50a3fae1913cdd661060090073dd931f79a/exemple1.png)
 
 ## Requirements
 
