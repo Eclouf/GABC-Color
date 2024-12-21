@@ -75,7 +75,7 @@ function activate(context) {
                 return completionItems;
             }
         } )
-    );
+    ),/\w/g;
 
     let disposable = vscode.commands.registerCommand('extension.insertParentheses', function () {
         const editor = vscode.window.activeTextEditor;
@@ -105,10 +105,32 @@ function activate(context) {
 }
 
 function separateSyllables(word) {
+    // Exceptions spécifiques
+    const exceptions = ["quo", "quid", "quæ"];
+    if (exceptions.includes(word.toLowerCase())) {
+        return [word];
+    }
     // Expression régulière pour capturer les séquences de consonnes et de voyelles
     const pattern = /[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]*[aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]+(?:[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]*$|[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ](?=[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]))?/gi;
     const syllables = word.match(pattern) || [];
-    return syllables;
+    // Séparer les voyelles consécutives
+    const separatedSyllables = [];
+    syllables.forEach(syllable => {
+        const subSyllables = syllable.split(/(?<=[aeiouyàâáäéèêëîïίíôóùúûüæǽœ])(?=[aeiouyàâáäéèêëîïίíôóùúûüæǽœ])/i);
+        separatedSyllables.push(...subSyllables);
+    });
+    // Gérer les coupures spécifiques pour les mots comme "fratres"
+    const finalSyllables = [];
+    for (let i = 0; i < separatedSyllables.length; i++) {
+        if (i < separatedSyllables.length - 1 && separatedSyllables[i].endsWith('r') && separatedSyllables[i + 1].startsWith('t')) {
+            finalSyllables.push(separatedSyllables[i] + separatedSyllables[i + 1]);
+            i++; // Skip the next syllable as it has been merged
+        } else {
+            finalSyllables.push(separatedSyllables[i]);
+        }
+    }
+
+    return finalSyllables;
 }
 
 function insertParentheses(text) {
