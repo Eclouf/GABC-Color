@@ -74,8 +74,8 @@ function activate(context) {
                 
                 return completionItems;
             }
-        } )
-    ),/\w/g;
+        }, '\n', ' ')
+    );
 
     let disposable = vscode.commands.registerCommand('extension.insertParentheses', function () {
         const editor = vscode.window.activeTextEditor;
