@@ -1,46 +1,50 @@
-{"name": "gabc-color",
-  "publisher": "eclouf_tools",
-  "displayName": "GABC Color",
-  "description": "GABC's Highlighting.",
-  "version": "0.1.3",
-  "engines": {
-    "vscode": "^1.95.0"
-  },
-  "main": "./extension.js",
-  "categories": [
-    "Programming Languages"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Eclouf/GABC-Color"
-  },
-  "author": "Eclouf <eclouf@gmail.com>",
-  "license": "MIT",
-  "contributes": {
-    "languages": [
-      {
-        "id": "gabc",
-        "aliases": [
-          "gabc"
-        ],
-        "extensions": [
-          ".gabc",
-          ".GABC"
-        ],
-        "configuration": "./language-configuration.json"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "gabc",
-        "scopeName": "source.gabc",
-        "path": "./syntaxes/gabc.tmLanguage.json"
-      }
-    ],
+{
+    "name": "gabc-color",
+    "publisher": "eclouf_tools",
+    "displayName": "GABC Color",
+    "description": "GABC's Highlighting.",
+    "version": "0.1.3",
+    "engines": {
+        "vscode": "^1.95.0"
+    },
+    "main": "./extension.js",
     "activationEvents": [
-      "onLanguage:gabc",
-      "onStartupFinished"
-    ]
-  }
+        "onLanguage:gabc",
+        "onCommand:extension.insertParentheses",
+        "onStartupFinished"
+    ],
+    "categories": [
+        "Programming Languages"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Eclouf/GABC-Color"
+    },
+    "author": "Eclouf <eclouf@gmail.com>",
+    "license": "MIT",
+    "contributes": {
+        "languages": [{
+            "id": "gabc",
+            "aliases": [
+                "gabc"
+            ],
+            "extensions": [
+                ".gabc",
+                ".GABC"
+            ],
+            "configuration": "./language-configuration.json"
+        }],
+        "commands": [{
+            "command": "extension.insertParentheses",
+            "title": "Insert Parentheses Around Syllables"
+        }],
+        "grammars": [{
+            "language": "gabc",
+            "scopeName": "source.gabc",
+            "path": "./syntaxes/gabc.tmLanguage.json"
+        }]
+    },
+    "dependencies": {
+        "regex-translator": "^0.2.8"
+    }
 }
-

@@ -6,13 +6,6 @@ function activate(context) {
             provideCompletionItems(document, position) {
                 const completionItems = [];
 
-                
-                
-                const suggestion = new vscode.CompletionItem('exampleFunction', vscode.CompletionItemKind.Function);
-                suggestion.detail = 'This is an example function';
-                suggestion.documentation = 'More details about this function';
-                completionItems.push(suggestion);
-
                 const headers = [
                     {label:'name:',documentation:"This is the name of the piece, in almost all cases the incipit, the first few words. In the case of the mass ordinary, the form as Kyrie X Alme Pater or Sanctus XI is recommended where appropriate."},
                     {label:'gabc-copyright:',documentation:"This license is the copyright notice (in English) of the gabc file, as chosen by the person named in the transcriber field. As well as the notice itself, it may include a brief description of the license, such as public domain, CC-by-sa; for a list of commonly found open source licenses and exceptions, please see this page. A separate text file will be necessary for the complete legal license. For the legal issues about Gregorian chant scores, please see the legal issues page. An example of this field would be:gabc-copyright:\n CC0-1.0 by Elie Roux, 2009 <http://creativecommons.org/publicdomain/zero/1.0/>;"},
@@ -81,9 +74,64 @@ function activate(context) {
                 
                 return completionItems;
             }
-        }, ' ' )
+        } )
     );
+
+    let disposable = vscode.commands.registerCommand('extension.insertParentheses', function () {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return;
+        }
+
+        const document = editor.document;
+        const text = document.getText();
+        const regex = /%%\s*([\s\S]*)/;
+        const match = regex.exec(text);
+
+        if (match) {
+            const originalText = match[1];
+            const modifiedText = insertParentheses(originalText);
+
+            const edit = new vscode.WorkspaceEdit();
+            const startPos = document.positionAt(match.index + 2);
+            const endPos = document.positionAt(match.index + 2 + originalText.length);
+            edit.replace(document.uri, new vscode.Range(startPos, endPos), modifiedText);
+
+            return vscode.workspace.applyEdit(edit);
+        }
+    });
+
+    context.subscriptions.push(disposable);
 }
+
+function separateSyllables(word) {
+    // Expression régulière pour capturer les séquences de consonnes et de voyelles
+    const pattern = /[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]*[aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]+(?:[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]*$|[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ](?=[^aeiouyAEIOUYàâáäéèêëîïίíôóùúûüæǽœÀÂÄÉÈÊËÎÏÔÙÛÜ]))?/gi;
+    const syllables = word.match(pattern) || [];
+    return syllables;
+}
+
+function insertParentheses(text) {
+    // Séparer le texte en mots en utilisant les espaces comme délimiteurs
+    const words = text.split(/(\s+)/);
+    // Ajouter des parenthèses entre chaque syllabe de chaque mot
+    const wordsWithParentheses = words.map(word => {
+        if (word.trim()) {
+            // Diviser le mot en syllabes
+            const syllables = separateSyllables(word);
+            // Ajouter des parenthèses entre les syllabes
+            let modifiedWord = syllables.join('()');
+            modifiedWord += '()';
+            // Ajouter un retour à la ligne après chaque signe de ponctuation
+            modifiedWord = modifiedWord.replace(/([.,;:!?\-]\(\))/g, '$1\n');
+            return modifiedWord;
+        }
+        return word;
+    });
+    // Rejoindre les mots pour reformer le texte
+    return wordsWithParentheses.join('');
+}
+
 
 function deactivate() {}
 
